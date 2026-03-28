@@ -1,0 +1,65 @@
+{
+  "name": "@condukt/react",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://condukt.dev/",
+  "license": "MIT",
+  "author": "Fangjun <fangjun20208@gmail.com>",
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "polymorphic",
+    "prismui",
+    "runtime",
+    "hooks",
+    "provider",
+    "adapter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medxaidev/condukt.git",
+    "directory": "packages/react"
+  },
+  "sideEffects": [
+    false
+  ],
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc && node ./scripts/esbuild.mjs",
+    "dev": "",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@condukt/core": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  }
+}
