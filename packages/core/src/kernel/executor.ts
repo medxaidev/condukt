@@ -5,6 +5,7 @@ import type {
   ExecutionContext,
   EffectRegistry,
 } from "../types";
+import type { ObserverBus } from "../observer";
 import { resolveParams } from "./resolver";
 import { evaluateCondition } from "./evaluator";
 
@@ -17,9 +18,18 @@ export async function executeSteps(
   steps: Step[],
   ctx: ExecutionContext,
   registry: EffectRegistry,
+  observers?: ObserverBus,
 ): Promise<void> {
-  for (const step of steps) {
-    await executeStep(step, ctx, registry);
+  for (let i = 0; i < steps.length; i++) {
+    const step = steps[i];
+    observers?.notifyStepStart(step, i, ctx);
+    try {
+      await executeStep(step, ctx, registry, observers);
+      observers?.notifyStepEnd(step, i, ctx);
+    } catch (err) {
+      observers?.notifyError(err, step, ctx);
+      throw err;
+    }
   }
 }
 
@@ -27,11 +37,12 @@ async function executeStep(
   step: Step,
   ctx: ExecutionContext,
   registry: EffectRegistry,
+  observers?: ObserverBus,
 ): Promise<void> {
   if (step.type === "effect") {
     await executeEffect(step, ctx, registry);
   } else {
-    await executeCondition(step, ctx, registry);
+    await executeCondition(step, ctx, registry, observers);
   }
 }
 
@@ -49,9 +60,10 @@ async function executeCondition(
   step: ConditionStep,
   ctx: ExecutionContext,
   registry: EffectRegistry,
+  observers?: ObserverBus,
 ): Promise<void> {
   const branch = evaluateCondition(step.if, ctx) ? step.then : step.else;
   if (branch?.length) {
-    await executeSteps(branch, ctx, registry);
+    await executeSteps(branch, ctx, registry, observers);
   }
 }

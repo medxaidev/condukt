@@ -23,6 +23,14 @@ export { DefaultEffectRegistry } from "./registry";
 // Engine
 export { ConduktEngine } from "./engine";
 
+// Validator
+export { validateFlow, MAX_STEPS, MAX_CONDITION_DEPTH } from "./validator";
+export type { ValidationError, ValidationResult } from "./validator";
+
+// Observer
+export { ObserverBus } from "./observer";
+export type { Observer, ObserverHooks } from "./observer";
+
 // Effects
 export {
   createApiCallHandler,
