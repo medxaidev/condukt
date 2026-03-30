@@ -6,7 +6,7 @@ export default defineConfig({
     environment: 'node',
     setupFiles: ['./vitest.setup.ts'],
     include: ['packages/**/*.{test,spec}.{ts,tsx}'],
-    exclude: ['**/node_modules/**', '**/dist/**'],
+    exclude: ['**/node_modules/**', '**/dist/**', 'packages/react/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],

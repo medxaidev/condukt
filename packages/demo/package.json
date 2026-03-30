@@ -1,0 +1,41 @@
+{
+  "name": "@condukt/demo",
+  "version": "0.0.1",
+  "description": "Condukt Demo",
+  "homepage": "https://condukt.dev",
+  "license": "MIT",
+  "author": "Fangjun <fangjun20208@gmail.com>",
+  "keywords": [
+    "typescript",
+    "runtime",
+    "kernel",
+    "event-bus",
+    "module-system",
+    "state-management",
+    "reducer",
+    "condukt",
+    "demo"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "@condukt/core": "0.0.1",
+    "@condukt/react": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react-swc": "4.3.0",
+    "vite": "8.0.3"
+  }
+}
