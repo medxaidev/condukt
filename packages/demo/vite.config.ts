@@ -4,11 +4,10 @@ import path from 'node:path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/prismui/',
   resolve: {
     alias: {
-      '@prismui/core': path.resolve(__dirname, '../core/src/index.ts'),
-      '@prismui/react': path.resolve(__dirname, '../react/src/index.ts'),
+      '@condukt/core': path.resolve(__dirname, '../core/src/index.ts'),
+      '@condukt/react': path.resolve(__dirname, '../react/src/index.ts'),
     },
   },
   server: {
